@@ -1,0 +1,37 @@
+
+plugins {
+    id 'java'
+    id 'jacoco'
+    id "com.github.johnrengelman.shadow" version "7.1.0"
+}
+
+group 'edu.kit.datamanager'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "edu.kit.datamanager:service-base:0.3.0"
+    implementation "edu.kit.datamanager:service-base:0.3.0"
+    implementation 'org.springframework.boot:spring-boot-starter-amqp:2.5.5'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.5'
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.5.5'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.5.5'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.5'
+    implementation files("src/main/resources/identifierValidator-1.0.jar")
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+    }
+}
